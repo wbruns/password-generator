@@ -45,7 +45,7 @@ var promptCriteria = function () {
   var confirmSpecial = confirm("Would you like to include special characters?");
   console.log(confirmSpecial);
 
-  return confirmUpper confirmNumeric 
+  
 };
 
 
