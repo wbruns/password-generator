@@ -58,30 +58,56 @@ var generatePassword = function() {
 // confirm character types for the password
 var confirmCriteria = function () {
   var confirmLower = confirm("Would you like to include lowercase letters?");
-  // if yes, add arrayLower to selectedCriteria
   if (confirmLower) {
-    selectedCriteria.push(...arrayLower);
-  }
+    // validate choice
+    var confirmChoice = confirm("Are you sure you want to add lowercase letters?");
+    if (confirmChoice) {
+      // if yes, add arrayLower to selectedCriteria
+      selectedCriteria.push(...arrayLower);
+    } else {
+      alert("Lowercase letters will not be used in your password.");
+    }
+  } 
+  
   var confirmUpper = confirm("Would you like to include uppercase letters?");
   // if yes, add arrayUpper to selectedCriteria
   if (confirmUpper) {
-    selectedCriteria.push(...arrayUpper);
+    confirmChoice = confirm("Are you sure you want to add uppercase letters?");
+    if (confirmChoice) {
+      selectedCriteria.push(...arrayUpper);
+    } else {
+      alert("Uppercase letters will not be used in your password.");
+    }
   }
+  
   var confirmNumeric = confirm("Would you like to include numbers?");
   // if yes, add arrayNum to selectedCriteria
   if (confirmNumeric) {
-    selectedCriteria.push(...arrayNum);
+    confirmChoice = confirm("Are you sure you want to add numbers?");
+    if (confirmChoice) {
+      selectedCriteria.push(...arrayNum);
+    } else {
+      alert("Numbers will not be used in your password.");
+    }
   }
+  
   var confirmSpecial = confirm("Would you like to include special characters?");
   // if yes, add arraySpecial to selectedCriteria
   if (confirmSpecial) {
-    selectedCriteria.push(...arraySpecial);
+    confirmChoice = confirm("Are you sure you want to add special characters?");
+    if (confirmChoice) {
+      selectedCriteria.push(...arraySpecial);
+    } else {
+      alert("Special characters will not be used in your password.");
+    }
   }
+
   // check to make sure at least 1 criteria was selected
   if (!confirmLower && !confirmUpper && !confirmNumeric && !confirmSpecial) {
     alert("Please choose at least one of the options for your password.");
-    promptCriteria();
+    confirmCriteria();
   }
+  console.log(selectedCriteria);
 };
 
 // Add event listener to generate button
