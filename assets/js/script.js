@@ -5,7 +5,7 @@
 // display password
 // Assignment code here
 
-// object for selected criteria
+// array for selected criteria
 var selectedCriteria = [];
 // lowercase characters
 var arrayLower = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
@@ -31,9 +31,10 @@ var writePassword = function() {
 
 // Generate a password
 var generatePassword = function() {
+  // reset selectedCriteria for making another password
+  selectedCriteria = [];
   // prompt for password length
   var promptPassLength = prompt("How long would you like your password to be? Input a value between 8 and 128");
-  console.log(promptPassLength);
   // check for false values
   if (!promptPassLength || promptPassLength < 8 || promptPassLength > 128 || isNaN(promptPassLength)) {
   alert("Please input a valid length.");
@@ -42,8 +43,17 @@ var generatePassword = function() {
   } else {
     promptCriteria();
   }
+  // array to store the new password
+  var randomPass = [];
   // start generating characters 
-
+  for (var i = 0; i < promptPassLength; i++) {
+    // randomly select elements to add to the password
+    randomChoice = selectedCriteria[Math.floor(Math.random() * selectedCriteria.length)];
+    console.log(randomChoice);
+    randomPass.push(randomChoice);
+  }
+  // make randomPass a string and return it to writePassword
+  return randomPass.join('');
 };
 
 // confirm character types for the password
