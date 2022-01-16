@@ -31,7 +31,7 @@ var generatePassword = function() {
   // reset selectedCriteria for making another password
   selectedCriteria = [];
   // prompt for password length
-  var promptPassLength = prompt("How long would you like your password to be? Input a value between 8 and 128");
+  var promptPassLength = Math.trunc(prompt("How long would you like your password to be? Input a value between 8 and 128"));
   
   // check for false values
   if (!promptPassLength || promptPassLength < 8 || promptPassLength > 128 || isNaN(promptPassLength)) {
@@ -107,7 +107,6 @@ var confirmCriteria = function () {
     alert("Please choose at least one of the options for your password.");
     confirmCriteria();
   }
-  console.log(selectedCriteria);
 };
 
 // Add event listener to generate button
