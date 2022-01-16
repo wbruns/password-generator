@@ -1,9 +1,7 @@
-// steps
-// pick to customize or not
+// STEPS
 // pick customizations, need at least 1
 // generate a password that meets selected criteria
 // display password
-// Assignment code here
 
 // array for selected criteria
 var selectedCriteria = [];
@@ -26,7 +24,6 @@ var writePassword = function() {
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-  
 };
 
 // Generate a password
@@ -35,13 +32,15 @@ var generatePassword = function() {
   selectedCriteria = [];
   // prompt for password length
   var promptPassLength = prompt("How long would you like your password to be? Input a value between 8 and 128");
+  
   // check for false values
   if (!promptPassLength || promptPassLength < 8 || promptPassLength > 128 || isNaN(promptPassLength)) {
   alert("Please input a valid length.");
   // rerun generatePassword
   generatePassword();
   } else {
-    promptCriteria();
+    // move to criteria confirmations
+    confirmCriteria();
   }
   // array to store the new password
   var randomPass = [];
@@ -49,7 +48,7 @@ var generatePassword = function() {
   for (var i = 0; i < promptPassLength; i++) {
     // randomly select elements to add to the password
     randomChoice = selectedCriteria[Math.floor(Math.random() * selectedCriteria.length)];
-    console.log(randomChoice);
+    // put each choice into the password array
     randomPass.push(randomChoice);
   }
   // make randomPass a string and return it to writePassword
@@ -57,7 +56,7 @@ var generatePassword = function() {
 };
 
 // confirm character types for the password
-var promptCriteria = function () {
+var confirmCriteria = function () {
   var confirmLower = confirm("Would you like to include lowercase letters?");
   // if yes, add arrayLower to selectedCriteria
   if (confirmLower) {
@@ -78,14 +77,12 @@ var promptCriteria = function () {
   if (confirmSpecial) {
     selectedCriteria.push(...arraySpecial);
   }
+  // check to make sure at least 1 criteria was selected
   if (!confirmLower && !confirmUpper && !confirmNumeric && !confirmSpecial) {
     alert("Please choose at least one of the options for your password.");
     promptCriteria();
   }
-  console.log(selectedCriteria);
-  
 };
-
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
